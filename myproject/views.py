@@ -1,4 +1,3 @@
-from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -15,16 +14,15 @@ def hello(request):
 @csrf_exempt
 def event(request):
     customEventHandler = CustomEventHandler(appSecret, appId)
-    httpResponse = HttpResponse(content='', status=500, content_type='application/json')
+    statusCode = {'status': 200}
 
     def start_response(status, headers):
-        global httpResponse
         if (status == '200 OK'):
-            print("Inside start_response")
-            httpResponse = HttpResponse(content='', status=200, content_type='application/json')
+            statusCode['status'] = 200
         else:
-            httpResponse = HttpResponse(content='', status=500, content_type='application/json')
+            statusCode['status'] = 500
 
     environ = request.environ
     customEventHandler.handle(environ, start_response)
-    return httpResponse
+    status = statusCode['status']
+    return HttpResponse(content='', status=status, content_type='application/json')

@@ -6,7 +6,7 @@ class CustomEventHandler(EventHandlerClient):
     def __init__(self, appSecret, appId):
         EventHandlerClient.__init__(self, appSecret, appId)
         self.on_app_install(self.handleInstall)
-        self.on_app_uninstall_handler(self.handleUninstall)
+        self.on_app_uninstall(self.handleUninstall)
 
     def handleInstall(self, request):
         print("Install")

@@ -1,5 +1,7 @@
 from flockos import EventHandlerClient
 
+from myproject import db
+
 
 class CustomEventHandler(EventHandlerClient):
 
@@ -11,9 +13,11 @@ class CustomEventHandler(EventHandlerClient):
     def handleInstall(self, event):
         token = event.token
         userId = event.userId
+        db.createUser(userId, token)
 
     # store info in db
-    
+
     def handleUninstall(self, event):
         userId = event.userId
+        db.deleteUser(userId)
     # remove info from db

@@ -1,7 +1,6 @@
 from flockos import chat
 from PyDictionary import PyDictionary
 
-dictionary = PyDictionary()
 
 def handleWord(word, guid, token):
     meaning = fetchOneMeaning(word)
@@ -11,6 +10,7 @@ def handleWord(word, guid, token):
 
 
 def fetchOneMeaning(word):
+    dictionary = PyDictionary()
     try:
         dictMeaning = dictionary.meaning(word)
     except:
@@ -19,4 +19,4 @@ def fetchOneMeaning(word):
 
 
 def sendMessage(message, guid, token):
-    chat.send_message(token=token, to=guid, text=message)
+    response = chat.send_message(token=token, to=guid.encode('ascii'), text=message)

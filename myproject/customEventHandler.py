@@ -1,6 +1,6 @@
 from flockos import EventHandlerClient
 
-from myproject import db
+from myproject import db, utils, properties
 
 
 class CustomEventHandler(EventHandlerClient):
@@ -9,6 +9,7 @@ class CustomEventHandler(EventHandlerClient):
         EventHandlerClient.__init__(self, appSecret, appId)
         self.on_app_install(self.handleInstall)
         self.on_app_uninstall(self.handleUninstall)
+        self.on_client_slash_command(self.handleSlashCommand)
 
     def handleInstall(self, event):
         token = event.token
@@ -20,4 +21,9 @@ class CustomEventHandler(EventHandlerClient):
     def handleUninstall(self, event):
         userId = event.userId
         db.deleteUser(userId)
+
     # remove info from db
+
+    def handleSlashCommand(self, event):
+        userId = event.userId
+        utils.handleWord(event.text.strip(), userId, properties().getBotToken())

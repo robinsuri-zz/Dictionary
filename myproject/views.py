@@ -2,9 +2,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from customEventHandler import CustomEventHandler
-
-appSecret = "8f221431-7a5a-42a6-bc19-42713e40d155"
-appId = "0951f74a-4e6a-4884-803c-b434453371ff"
+from myproject import properties
 
 
 def hello(request):
@@ -13,7 +11,7 @@ def hello(request):
 
 @csrf_exempt
 def event(request):
-    customEventHandler = CustomEventHandler(appSecret, appId)
+    customEventHandler = CustomEventHandler(properties().getAppSecret(), properties().getAppId())
     statusCode = {'status': 200}
 
     def start_response(status, headers):

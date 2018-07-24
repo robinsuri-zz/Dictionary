@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from myproject import views
 
-urlpatterns = [url(r'^hello/', views.hello),
+urlpatterns = [
                url(r'^event', views.event),
                url(r'^admin/', admin.site.urls),
                ]

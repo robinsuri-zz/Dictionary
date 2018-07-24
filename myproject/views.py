@@ -4,11 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 from customEventHandler import CustomEventHandler
 from myproject import properties
 
-
-def hello(request):
-    return HttpResponse('hello')
-
-
 @csrf_exempt
 def event(request):
     customEventHandler = CustomEventHandler(properties().getAppSecret(), properties().getAppId())

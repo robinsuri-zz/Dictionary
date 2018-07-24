@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from customEventHandler import CustomEventHandler
-from myproject import properties
+from src import properties
 
 @csrf_exempt
 def event(request):

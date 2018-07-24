@@ -1,6 +1,6 @@
 from flockos import EventHandlerClient
 
-from myproject import db, utils, properties
+from src import db, utils, properties
 
 
 class CustomEventHandler(EventHandlerClient):

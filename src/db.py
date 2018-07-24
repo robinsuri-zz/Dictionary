@@ -1,4 +1,4 @@
-from myproject.models import User
+from src.models import User
 
 
 def fetchUserToken(userId):
